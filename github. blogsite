@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Blog Site</h1>
+    </header>
+
+    <main>
+        <div id="login-container">
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="login-error" class="error-message"></p>
+        </div>
+
+        <div id="blog-content" class="hidden">
+            <h2>Welcome to my Blog!</h2>
+            <section id="about-me">
+                <h3 onclick="toggleContent('about-me')">About Me</h3>
+                <div id="about-me-content" class="hidden">
+                    <p>This is where you can write something about yourself.</p>
+                </div>
+            </section>
+
+            <section id="my-hobbies">
+                <h3 onclick="toggleContent('my-hobbies')">My Hobbies</h3>
+                <div id="my-hobbies-content" class="hidden">
+                    <p>some of my hobbies</p>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h3 onclick="toggleContent('contact')">Contact</h3>
+                <div id="contact-content" class="hidden">
+                    <p>You can contact me through baykingjaime10.c.com.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Example hardcoded credentials (replace with your authentication logic)
+            var validUsername = 'user';
+            var validPassword = 'password';
+
+            if (username === validUsername && password === validPassword) {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('blog-content').classList.remove('hidden');
+            } else {
+                document.getElementById('login-error').textContent = 'Invalid username or password.';
+            }
+        });
+
+        function toggleContent(sectionId) {
+            var content = document.getElementById(sectionId + '-content');
+            content.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
